@@ -1,6 +1,7 @@
 aioredis==1.3.1
 aiosmtplib==1.1.6
 anyio==3.2.0
+asgiref==3.3.4
 async-timeout==3.0.1
 beautifulsoup4==4.9.3
 blinker==1.4
@@ -8,6 +9,7 @@ bs4==0.0.1
 bson==0.5.10
 certifi==2021.5.30
 chardet==4.0.0
+click==8.0.1
 cloudinary==1.26.0
 dnspython==2.1.0
 email-validator==1.1.3
@@ -41,3 +43,4 @@ twilio==6.59.1
 typing==3.7.4.3
 typing-extensions==3.10.0.0
 urllib3==1.26.5
+uvicorn==0.14.0

@@ -6,15 +6,17 @@ from starlette.middleware.cors import CORSMiddleware
 from dependencies import verify_api_token, verify_admin_token
 from routers import properties, photos, reviews, links, internal, website, configurations
 
-app = FastAPI()
+middleware = [ Middleware(CORSMiddleware, allow_origins=['*'], allow_credentials=True, allow_methods=['*'], allow_headers=['*']))]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"]
-)
+app = FastAPI(middleware=middleware)
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"]
+# )
 
 app.include_router(properties.router,
     prefix="/console",

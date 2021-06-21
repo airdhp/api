@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from fastapi_mail import FastMail, MessageSchema,ConnectionConfig
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from typing import Optional, List
 
@@ -27,6 +28,14 @@ conf = ConnectionConfig(
 )
 
 router = APIRouter()
+
+router.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://airdhp-web.herokuapp.com", "https://airdhp-web.herokuapp.com", "http://localhost"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 @router.get("/configuration", response_description="Get Website configuration")
 def get_configuration():

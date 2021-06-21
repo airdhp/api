@@ -1,21 +1,19 @@
 from fastapi import FastAPI, Body, HTTPException, status, File, UploadFile, Header, APIRouter, Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 from dependencies import verify_api_token, verify_admin_token
 from routers import properties, photos, reviews, links, internal, website, configurations
 
 app = FastAPI()
 
-origins = ['*']
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
 app.include_router(properties.router,

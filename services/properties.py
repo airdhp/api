@@ -18,7 +18,6 @@ def getProperties():
 
 def getPropertyBySlug(slug):
     id = db["properties"].find_one({"slug": slug})['_id']
-    id = getProperty(id)['_id']
     property = getResponsePropertyModel(id)
     return property
 

@@ -32,7 +32,7 @@ def getPropertyList():
     properties = db["properties"].find({"active": True}).sort("order")
     result = []
     for p in properties:
-        result.append(p["slug"])
+        result.append({ "slug": p["slug"], "title": p["title"] })
     return result
 
 def getProperty(id):

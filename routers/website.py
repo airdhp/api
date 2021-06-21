@@ -28,7 +28,6 @@ conf = ConnectionConfig(
 
 router = APIRouter()
 
-
 @router.get("/configuration", response_description="Get Website configuration")
 def get_configuration():
 

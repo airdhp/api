@@ -8,6 +8,18 @@ from routers import properties, photos, reviews, links, internal, website, confi
 
 app = FastAPI()
 
+@app.get("/")
+def home():
+    return {"message":"Health Check Passed!"}
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
 app.include_router(properties.router,
     prefix="/console",
     tags=["properties"],
@@ -48,12 +60,4 @@ app.include_router(internal.router,
     prefix="/console/internal",
     tags=["internal"],
     dependencies=[Depends(verify_admin_token)]
-)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"]
 )

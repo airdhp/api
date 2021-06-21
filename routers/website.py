@@ -9,7 +9,7 @@ from typing import Optional, List
 from models.notifications import Notification
 
 from services.website import getWebsiteConfiguration
-from services.properties import getPropertiesFull, getPropertyBySlug
+from services.properties import getPropertiesFull, getPropertyBySlug, getPropertyList
 from services.reviews import getHighlightedReviews
 from services.email import sendEmail
 
@@ -64,6 +64,14 @@ def show_reviews():
     if reviews is not None:
         return reviews
     raise HTTPException(status_code=404, detail=f"Reviews for homepage not found")
+
+
+@router.get("/property_list", response_description="Property list for homepage")
+def show_property_list():
+    list = getPropertyList()
+    if list is not None:
+        return list
+    raise HTTPException(status_code=404, detail=f"List for homepage not found")
 
 
 @router.post("/notification", response_description="Send notification")

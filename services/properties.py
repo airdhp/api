@@ -28,6 +28,13 @@ def getPropertiesFull():
         result.append(getResponsePropertyModel(p['_id']))
     return result
 
+def getPropertyList():
+    properties = db["properties"].find({"active": True}).sort("order")
+    result = []
+    for p in properties:
+        result.append(p["slug"])
+    return result
+
 def getProperty(id):
     property = db["properties"].find_one({"_id": id})
     return property
